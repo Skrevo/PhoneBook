@@ -4,7 +4,9 @@ import com.example.phonebook.models.Address;
 import com.example.phonebook.repositories.AddressRepository;
 import com.example.phonebook.services.data.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AddressServiceDb implements AddressService {
 
     @Autowired

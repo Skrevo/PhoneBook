@@ -4,9 +4,10 @@ import com.example.phonebook.models.Client;
 import com.example.phonebook.repositories.ClientRepository;
 import com.example.phonebook.services.data.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class ClientServiceDb implements ClientService {
 
     @Autowired
