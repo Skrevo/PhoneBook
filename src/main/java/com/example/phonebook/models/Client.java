@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,5 +26,14 @@ public class Client {
     private String patronymic;
     @Column(length = 50, nullable = false, unique = true)
     private String email;
-
+    @OneToOne(fetch = FetchType.LAZY)
+    private Address address;
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    private Set<Phone> phones;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "clients_accounts",
+            joinColumns = @JoinColumn(name = "client_id", nullable = false, foreignKey = @ForeignKey(name = "FK_clients")),
+            inverseJoinColumns = @JoinColumn(name = "account_id", nullable = false, foreignKey =@ForeignKey(name = "FK_accounts"))
+    )
 }
