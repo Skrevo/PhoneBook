@@ -8,6 +8,9 @@ public interface ClientService {
     Client save(Client client);
 
     List<Client> findAll();
+    List<Client> findAllBySurnameAndNameAndPatronymic(String surname, String name, String patronymic);
 
+    Client findById(Integer id);
 
+    List<Client> saveAll(List<Client> clients);
 }

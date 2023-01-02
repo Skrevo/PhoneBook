@@ -21,4 +21,19 @@ public class ClientServiceDb implements ClientService {
     public List<Client> findAll() {
         return clientRepository.findAll();
     }
+
+    @Override
+    public List<Client> findAllBySurnameAndNameAndPatronymic(String surname, String name, String patronymic) {
+        return clientRepository.findAllBySurnameAndNameAndPatronymic(surname, name, patronymic);
+    }
+
+    @Override
+    public Client findById(Integer id) {
+        return clientRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Client> saveAll(List<Client> clients) {
+        return clientRepository.saveAll(clients);
+    }
 }
