@@ -30,10 +30,4 @@ public class Client {
     private Address address;
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private Set<Phone> phones;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "clients_accounts",
-            joinColumns = @JoinColumn(name = "client_id", nullable = false, foreignKey = @ForeignKey(name = "FK_clients")),
-            inverseJoinColumns = @JoinColumn(name = "account_id", nullable = false, foreignKey =@ForeignKey(name = "FK_accounts"))
-    )
 }
