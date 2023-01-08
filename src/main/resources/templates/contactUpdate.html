@@ -6,16 +6,16 @@
 </head>
 <body>
 <div class="clientForm">
-  <form th:action="@{/updateClientAddressForm}" method="post">
+  <form th:action="@{/updateContactForm}" method="post">
     <div>
       <h2 style="background: aqua">Client Name</h2>
-      <input type="text" name="id" readonly th:value="${client.id}">
-      <input type="text" name="surname" placeholder="Surname" th:value="${client.surname}">
-      <input type="text" name="name" placeholder="Name" th:value="${client.name}">
-      <input type="text" name="patronymic" placeholder="Patronymic" th:value="${client.patronymic}">
-      <input type="email" name="email" placeholder="Email" th:value="${client.email}">
+      <input type="text" name="id" readonly th:value="${contact.id}">
+      <input type="text" name="surname" placeholder="Surname" th:value="${contact.surname}">
+      <input type="text" name="name" placeholder="Name" th:value="${contact.name}">
+      <input type="text" name="patronymic" placeholder="Patronymic" th:value="${contact.patronymic}">
+      <input type="email" name="email" placeholder="Email" th:value="${contact.email}">
     </div>
-    <div th:object="${client.address}">
+    <div th:object="${contact.address}">
       <h2 style="background: aqua">Client Address</h2>
       <input type="text" name="idAddress" placeholder="id" th:value="*{id}">
       <input type="text" name="region" placeholder="Region" th:value="*{region}">
@@ -24,22 +24,18 @@
       <input type="text" name="street" placeholder="Street" th:value="*{street}">
       <input type="text" name="house" placeholder="House" th:value="*{house}">
     </div>
-    <div th:object="${client}" th:each="phone:${phones}">
+    <div th:object="${contact}" th:each="phone:${phones}">
       <h2 style="background: aqua">Client Phone</h2>
       <input type="text" name="id" placeholder="id" th:value="${phone.id}">
       <input type="text" name="phone" placeholder="phone" th:value="${phone.phone}">
     </div>
-    <div th:if="${true}" th:object="${client.phones.iterator()}">
+    <div th:if="${true}" th:object="${contact.phones.iterator()}">
       <p>Add new phone</p>
       <input type="text" name="id" placeholder="id" th:value="${id}">
       <input type="text" name="phone" placeholder="phone" th:value="${phone}">
     </div>
     <input type="submit" value="SAVE">
   </form>
-</div>
-<div class="addressForm">
-  <form action="" method="post"></form>
-
 </div>
 </body>
 </html>

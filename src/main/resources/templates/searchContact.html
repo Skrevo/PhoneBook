@@ -24,7 +24,7 @@
         <td th:utext="${contact.patronymic}"></td>
         <td th:utext="${contact.email}"></td>
         <td>
-          <form th:action="@{/openClientForm}" method="post">
+          <form th:action="@{/openContactForm}" method="post">
             <input type="hidden" name="id" th:value="${contact.id}">
             <input type="submit" value="&#8942;">
           </form>

@@ -32,14 +32,14 @@ public class ContactUpdateController {
         Client client = clientService.findById(id);
         if (client.getAddress() == null)
             client.setAddress(new Address());
-        model.addAttribute("client", client);
+        model.addAttribute("contact", client);
         model.addAttribute("address", client.getAddress());
         model.addAttribute("phones", client.getPhones());
         return "contactUpdate";
     }
 
-    @PostMapping("updateClientAddressForm")
-    public ModelAndView updateClientAddressForm(
+    @PostMapping("updateContactForm")
+    public ModelAndView updateContactForm(
             @ModelAttribute Client client,
             @ModelAttribute Address address,
             @ModelAttribute Phone phone,

@@ -22,18 +22,18 @@ public class ContactsController {
     @GetMapping("contacts")
     public String load(Model model) {
         List<Client> list = clientService.findAll();
-        model.addAttribute("clients", list);
+        model.addAttribute("contacts", list);
         return "contacts";
     }
 
-    @PostMapping("addClientForm")
-    public String addClientForm(@ModelAttribute Client client) {
+    @PostMapping("addContactForm")
+    public String addContactForm(@ModelAttribute Client client) {
         clientService.save(client);
         return "redirect:contacts";
     }
 
-    @PostMapping("openClientForm")
-    public ModelAndView openClientForm(Integer id){
+    @PostMapping("openContactForm")
+    public ModelAndView openContactForm(Integer id){
         return new ModelAndView("redirect:contactUpdate", new ModelMap("id", id));
     }
 
