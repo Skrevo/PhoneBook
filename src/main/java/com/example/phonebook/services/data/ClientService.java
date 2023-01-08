@@ -10,4 +10,6 @@ public interface ClientService {
     List<Client> findAllBySurnameAndNameAndPatronymic(String surname, String name, String patronymic);
     Client findById(Integer id);
     List<Client> saveAll(List<Client> clients);
+
+    List<Client> findAllByName(String searchName);
 }

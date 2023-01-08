@@ -14,26 +14,31 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-public class ClientsController {
+public class ContactsController {
     @Autowired
     public ClientService clientService;
 
 
-    @GetMapping("clients")
+    @GetMapping("contacts")
     public String load(Model model) {
         List<Client> list = clientService.findAll();
         model.addAttribute("clients", list);
-        return "clients";
+        return "contacts";
     }
 
     @PostMapping("addClientForm")
     public String addClientForm(@ModelAttribute Client client) {
         clientService.save(client);
-        return "redirect:clients";
+        return "redirect:contacts";
     }
 
     @PostMapping("openClientForm")
     public ModelAndView openClientForm(Integer id){
-        return new ModelAndView("redirect:clientUpdate", new ModelMap("id", id));
+        return new ModelAndView("redirect:contactUpdate", new ModelMap("id", id));
+    }
+
+    @PostMapping("searchNameForm")
+    public ModelAndView searchNameForm(String searchName) {
+        return new ModelAndView("redirect:searchContact", new ModelMap("searchName", searchName));
     }
 }

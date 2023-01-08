@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ClientUpdateController {
+public class ContactUpdateController {
     @Autowired
     private ClientService clientService;
 
@@ -27,7 +27,7 @@ public class ClientUpdateController {
     @Autowired
     private PhoneService phoneService;
 
-    @GetMapping("clientUpdate")
+    @GetMapping("contactUpdate")
     public String load(@RequestParam("id") Integer id, Model model) {
         Client client = clientService.findById(id);
         if (client.getAddress() == null)
@@ -35,7 +35,7 @@ public class ClientUpdateController {
         model.addAttribute("client", client);
         model.addAttribute("address", client.getAddress());
         model.addAttribute("phones", client.getPhones());
-        return "clientUpdate";
+        return "contactUpdate";
     }
 
     @PostMapping("updateClientAddressForm")
@@ -53,7 +53,7 @@ public class ClientUpdateController {
         address = addressService.save(address);
         client.setAddress(address);
         clientService.save(client);
-        return new ModelAndView("redirect:clientUpdate",
+        return new ModelAndView("redirect:contactUpdate",
                 new ModelMap("id",client.getId()));
     }
 }
