@@ -30,6 +30,7 @@
             <th>Name</th>
             <th>Patronymic</th>
             <th>Email</th>
+            <th>Phone</th>
         </tr>
         <tr th:each="contact:${contacts}">
             <td th:utext="${contact.id}"></td>
@@ -37,6 +38,7 @@
             <td th:utext="${contact.name}"></td>
             <td th:utext="${contact.patronymic}"></td>
             <td th:utext="${contact.email}"></td>
+            <td th:utext="${contact.phones}"></td>
             <td>
                 <form th:action="@{/openContactForm}" method="post">
                     <input type="hidden" name="id" th:value="${contact.id}">

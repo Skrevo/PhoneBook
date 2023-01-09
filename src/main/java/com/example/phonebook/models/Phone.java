@@ -1,10 +1,7 @@
 package com.example.phonebook.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Objects;
 
@@ -36,5 +33,10 @@ public class Phone {
     @Override
     public int hashCode() {
         return Objects.hash(id, phone);
+    }
+
+    @Override
+    public String toString() {
+        return  phone;
     }
 }

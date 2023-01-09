@@ -23,6 +23,7 @@ public class ContactsController {
     public String load(Model model) {
         List<Contact> list = contactService.findAll();
         model.addAttribute("contacts", list);
+        //model.addAttribute("phones", list.get(0).getPhones());
         return "contacts";
     }
 
