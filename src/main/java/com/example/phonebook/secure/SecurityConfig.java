@@ -21,7 +21,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+    //@Bean
     public InMemoryUserDetailsManager inMemory(BCryptPasswordEncoder encoder) {
         return new InMemoryUserDetailsManager(
                 User.builder()
@@ -50,11 +50,10 @@ public class SecurityConfig {
                 .and().build();
 
     }
-
-    //@Bean
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .authorizeHttpRequests()
+                .authorizeRequests()
                 .requestMatchers(
                         "/error",
                         "/registration"

@@ -5,6 +5,11 @@
   <title>Client Update</title>
 </head>
 <body>
+<header>
+  <form th:action="@{/backToContacts}">
+    <input type="submit" value=" <= BACK TO CONTACTS ">
+  </form>
+</header>
 <div class="clientForm">
   <form th:action="@{/updateContactForm}" method="post">
     <div>

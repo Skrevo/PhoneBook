@@ -21,9 +21,9 @@ public class Phone {
     @Column(nullable = false, length = 20)
     private String phone;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id", nullable = false,
-            foreignKey = @ForeignKey(name = "FK_phones_clients"))
-    private Client client;
+    @JoinColumn(name = "contact_id", nullable = false,
+            foreignKey = @ForeignKey(name = "FK_phones_contacts"))
+    private Contact contact;
 
     @Override
     public boolean equals(Object o) {

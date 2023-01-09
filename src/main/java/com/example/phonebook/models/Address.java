@@ -25,8 +25,8 @@ public class Address {
     @Column(nullable = false)
     private String house;
     @OneToOne(mappedBy = "address", fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_address_clients"))
-    private Client client;
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_address_contacts"))
+    private Contact contact;
 
     @Override
     public String toString() {
@@ -37,7 +37,7 @@ public class Address {
                 ", city='" + city + '\'' +
                 ", street='" + street + '\'' +
                 ", house='" + house + '\'' +
-                ", client=" + client +
+                ", contact=" + contact +
                 '}';
     }
 }

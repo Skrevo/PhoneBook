@@ -1,7 +1,7 @@
 package com.example.phonebook.ui.controllers;
 
-import com.example.phonebook.models.Client;
-import com.example.phonebook.services.data.ClientService;
+import com.example.phonebook.models.Contact;
+import com.example.phonebook.services.data.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,19 +16,19 @@ import java.util.List;
 @Controller
 public class ContactsController {
     @Autowired
-    public ClientService clientService;
+    public ContactService contactService;
 
 
     @GetMapping("contacts")
     public String load(Model model) {
-        List<Client> list = clientService.findAll();
+        List<Contact> list = contactService.findAll();
         model.addAttribute("contacts", list);
         return "contacts";
     }
 
     @PostMapping("addContactForm")
-    public String addContactForm(@ModelAttribute Client client) {
-        clientService.save(client);
+    public String addContactForm(@ModelAttribute Contact contact) {
+        contactService.save(contact);
         return "redirect:contacts";
     }
 

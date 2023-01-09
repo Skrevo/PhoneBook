@@ -13,8 +13,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "clients")
-public class Client {
+@Table(name = "contacts")
+public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -28,6 +28,6 @@ public class Client {
     private String email;
     @OneToOne(fetch = FetchType.LAZY)
     private Address address;
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "contact", fetch = FetchType.LAZY)
     private Set<Phone> phones;
 }

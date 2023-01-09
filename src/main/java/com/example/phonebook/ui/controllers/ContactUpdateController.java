@@ -1,10 +1,10 @@
 package com.example.phonebook.ui.controllers;
 
 import com.example.phonebook.models.Address;
-import com.example.phonebook.models.Client;
+import com.example.phonebook.models.Contact;
 import com.example.phonebook.models.Phone;
 import com.example.phonebook.services.data.AddressService;
-import com.example.phonebook.services.data.ClientService;
+import com.example.phonebook.services.data.ContactService;
 import com.example.phonebook.services.data.PhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ContactUpdateController {
     @Autowired
-    private ClientService clientService;
+    private ContactService contactService;
 
     @Autowired
     private AddressService addressService;
@@ -29,31 +29,36 @@ public class ContactUpdateController {
 
     @GetMapping("contactUpdate")
     public String load(@RequestParam("id") Integer id, Model model) {
-        Client client = clientService.findById(id);
-        if (client.getAddress() == null)
-            client.setAddress(new Address());
-        model.addAttribute("contact", client);
-        model.addAttribute("address", client.getAddress());
-        model.addAttribute("phones", client.getPhones());
+        Contact contact = contactService.findById(id);
+        if (contact.getAddress() == null)
+            contact.setAddress(new Address());
+        model.addAttribute("contact", contact);
+        model.addAttribute("address", contact.getAddress());
+        model.addAttribute("phones", contact.getPhones());
         return "contactUpdate";
     }
 
     @PostMapping("updateContactForm")
     public ModelAndView updateContactForm(
-            @ModelAttribute Client client,
+            @ModelAttribute Contact contact,
             @ModelAttribute Address address,
             @ModelAttribute Phone phone,
             @RequestParam(value = "idAddress", required = false) Long idAddress
     ){
         phone.setId(phone.getId());
-        phone.setClient(client);
+        phone.setContact(contact);
         phoneService.save(phone);
         address.setId(idAddress);
-        address.setClient(client);
+        address.setContact(contact);
         address = addressService.save(address);
-        client.setAddress(address);
-        clientService.save(client);
+        contact.setAddress(address);
+        contactService.save(contact);
         return new ModelAndView("redirect:contactUpdate",
-                new ModelMap("id",client.getId()));
+                new ModelMap("id", contact.getId()));
+    }
+
+    @GetMapping("backToContacts")
+    public String backToContacts() {
+        return "redirect:contacts";
     }
 }

@@ -1,7 +1,7 @@
 package com.example.phonebook.ui.controllers;
 
-import com.example.phonebook.models.Client;
-import com.example.phonebook.services.data.ClientService;
+import com.example.phonebook.models.Contact;
+import com.example.phonebook.services.data.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +14,11 @@ import java.util.List;
 public class SearchNameController {
 
     @Autowired
-    public ClientService clientService;
+    public ContactService contactService;
 
     @GetMapping("searchContact")
     public String load(@RequestParam("searchName") String searchName, Model model) {
-        List<Client> list = clientService.findAllByName(searchName);
+        List<Contact> list = contactService.findAllByName(searchName);
         model.addAttribute("contacts", list);
         return "searchContact";
 
