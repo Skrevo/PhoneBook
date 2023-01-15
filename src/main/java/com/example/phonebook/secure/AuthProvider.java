@@ -26,9 +26,9 @@ public class AuthProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         User user = userService.findByUsername(authentication.getName());
-        if (user != null)
+        if (user == null)
             throw new BadCredentialsException("wrong username");
-        if (passwordEncoder.matches(
+        if (!passwordEncoder.matches(
                 (String)authentication.getCredentials(),
                 user.getPassword()))
             throw new BadCredentialsException("wrong password");
@@ -37,6 +37,6 @@ public class AuthProvider implements AuthenticationProvider {
 
     @Override
     public boolean supports(Class<?> authentication) {
-        return false;
+        return true;
     }
 }

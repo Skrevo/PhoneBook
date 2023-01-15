@@ -21,24 +21,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    //@Bean
-    public InMemoryUserDetailsManager inMemory(BCryptPasswordEncoder encoder) {
-        return new InMemoryUserDetailsManager(
-                User.builder()
-                        .passwordEncoder(encoder::encode)
-                        .username("u")
-                        .password("u")
-                        .roles(USER.name())
-                        .build(),
-                User.builder()
-                        .passwordEncoder(encoder::encode)
-                        .username("a")
-                        .password("a")
-                        .roles(ADMIN.name())
-                        .build()
-        );
-    }
-
     @Bean
     public AuthenticationManager authManager(HttpSecurity security,
                                              BCryptPasswordEncoder passwordEncoder,
@@ -54,20 +36,20 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                .requestMatchers(
+                .antMatchers(
                         "/error",
                         "/registration"
                 )
                 .permitAll()
                 //
-                .requestMatchers(
+                .antMatchers(
                         "/",
-                        "/clients"
+                        "/contacts"
                 )
                 .authenticated()
                 //
-                .requestMatchers(
-                        "/clientUpdate"
+                .antMatchers(
+                        "/contactUpdate"
                 )
                 .hasAnyAuthority(
                         ADMIN.name()
